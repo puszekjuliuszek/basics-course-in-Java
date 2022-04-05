@@ -1,15 +1,21 @@
+import java.time.chrono.MinguoDate;
 import java.util.Scanner;
+
 public class businessCard {
     public static void main(String[] args) {
         Scanner mySc = new Scanner(System.in);
+
         System.out.println("Wprowadź imię");
         String name = mySc.nextLine();
+
         System.out.println("Wprowadź nazwisko");
         String surname = mySc.nextLine();
+
         System.out.println("Wprowadź telefon");
-        String tel = mySc.nextLine();
+        String phone = mySc.nextLine();
+
         System.out.println("Wprowadź miasto");
-        String city = mySc.nextLine();
+        String adress = mySc.nextLine();
 
         String upperLine = "* " + name + " " + surname;
         String lowerLine = "* tel. " + phone + " adress: " + adress;
@@ -17,9 +23,19 @@ public class businessCard {
         int upperLineLength = upperLine.length();
         int lowerLineLength = lowerLine.length();
 
-        int lineLength = Math.max(upperLineLength, lowerLineLength);
+        int lineLength = Math.max(upperLineLength, lowerLineLength) + 4;
+        int diff = lineLength - Math.min(upperLineLength, lowerLineLength);
 
-        String stars = "*".repeat(lineLength);
+        if (upperLineLength > lowerLineLength) {
+            lowerLine = lowerLine + " ".repeat(diff)+"*";
+            upperLine = upperLine+ "    *";
+        } else {
+            upperLine = upperLine +" ".repeat(diff) + "*";
+            lowerLine = lowerLine + "    *";
+
+        }
+        String stars = "*".repeat(lineLength+1);
+
 
         System.out.println(stars);
         System.out.println(upperLine);
